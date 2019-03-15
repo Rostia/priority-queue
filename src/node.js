@@ -46,14 +46,15 @@ class Node {
 
 		oldParent.left = this.left;
 		oldParent.right = this.right;
-
+		if(this.left) this.left.parent = oldParent;
+		if(this.right) this.right.parent = oldParent;
 		if(oldParentLeft == this){
-			if(this.left) this.left.parent = oldParent;
+			
 			this.left = oldParent;
 			this.right = oldParentRight;
 
 		}else{
-			if(this.right) this.right.parent = oldParent;
+			
 			this.left = oldParentLeft;
 			this.right = oldParent;
 		}
