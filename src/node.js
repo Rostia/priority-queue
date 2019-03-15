@@ -42,18 +42,26 @@ class Node {
 		let oldParentRight = this.parent.right;
 		this.parent.parent = this;
 		this.parent = oldParentParent;
-		
+	
+
 		oldParent.left = this.left;
 		oldParent.right = this.right;
 
 		if(oldParentLeft == this){
+			if(this.left) this.left.parent = oldParent;
 			this.left = oldParent;
 			this.right = oldParentRight;
+
 		}else{
+			if(this.right) this.right.parent = oldParent;
 			this.left = oldParentLeft;
 			this.right = oldParent;
 		}
-		if(this.left) this.left.parent = this;
+		
+		if(this.left) {
+
+			this.left.parent = this;
+		}
 		if(this.right) this.right.parent = this;
 		if(this.parent !== null){
 			if(this.parent.left == oldParent){
